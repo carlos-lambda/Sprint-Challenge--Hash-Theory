@@ -10,18 +10,27 @@ char **reconstruct_trip(Ticket **tickets, int length)
   char **route = malloc(length * sizeof(char *));
 
   // YOUR CODE HERE
+  for (int i = 0; i < length; i++)
+  {
+    // create the paired tables with the sources and destination
+    char *ticket_source = tickets[i]->source;
+    char *ticket_dest = tickets[i]->destination;
+
+    hash_table_insert(ht, ticket_source, ticket_dest);
+  }
+
+  // need to get the first location (readme says it should be valid 🤷‍♂️)
 
   return route;
 }
 
 void print_route(char **route, int length)
 {
-  for (int i = 0; i < length; i++) {
+  for (int i = 0; i < length; i++)
+  {
     printf("%s\n", route[i]);
   }
 }
-
-
 
 #ifndef TESTING
 int main(void)
